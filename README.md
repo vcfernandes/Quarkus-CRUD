@@ -1,93 +1,201 @@
-Quarkus CRUD 
+🚀 Quarkus CRUD API - Gerenciamento de Usuários
 
-Este projeto foi desenvolvido com Quarkus para aprendizado e comparação com Spring Boot.
-A aplicação implementa um CRUD de usuários utilizando:
+Este projeto é uma aplicação de exemplo desenvolvida com Quarkus para demonstrar a implementação de uma API REST de CRUD (Create, Read, Update, Delete) de usuários. Foi concebido como um recurso de aprendizado e comparação com projetos equivalentes em Spring Boot.
+✨ Funcionalidades
 
-Quarkus REST (JAX-RS)
-Hibernate ORM with Panache
-Jackson para serialização JSON
-MySQL como banco de dados
-Tratamento de exceções customizadas
+A aplicação implementa um CRUD completo de usuários, oferecendo as seguintes capacidades:
 
-🚀 Tecnologias utilizadas
+    API RESTful completa para gerenciamento de usuários.
 
-Quarkus
-REST (JAX-RS)
-Hibernate ORM with Panache
-RESTEasy Jackson
-JDBC Driver MySQL
-Jakarta Persistence (JPA)
-Jakarta Transactions
+    Persistência de dados via Hibernate ORM com Panache, simplificando as operações de banco de dados.
 
-📌 Endpoints
+    Serialização e desserialização JSON utilizando Jackson.
 
+    Integração com MySQL como banco de dados relacional.
+
+    Tratamento de exceções customizado para respostas de erro claras.
+
+🛠️ Tecnologias Utilizadas
+
+Este projeto foi construído utilizando as seguintes tecnologias e frameworks:
+
+    Quarkus: O framework Java nativo otimizado para a nuvem.
+
+    Java 11+
+
+    Jakarta REST (JAX-RS) com RESTEasy Jackson: Para construção de APIs RESTful e serialização/desserialização JSON.
+
+    Hibernate ORM with Panache: ORM (Object-Relational Mapping) para fácil interação com o banco de dados, com a API simplificada do Panache.
+
+    JDBC Driver MySQL: Conectividade com o banco de dados MySQL.
+
+    Jakarta Persistence (JPA): Padrão para ORM utilizado pelo Hibernate.
+
+    Jakarta Transactions: Gerenciamento de transações.
+
+📌 Endpoints da API
+
+A API expõe os seguintes endpoints para gerenciamento de usuários:
 ➕ Criar Usuário
 
-POST /users
-Body: {
+Cria um novo usuário no sistema.
+
+    Método: POST
+
+    URL: /users
+
+    Corpo da Requisição (Body):
+    code JSON
+    
+{
   "username": "vinicius"
 }
 
-📄 Buscar Todos
+  
 
-GET /users?page=0&pageSize=10
+Exemplo de Resposta (201 Created):
+code JSON
+        
+    {
+      "id": 1,
+      "username": "vinicius"
+    }   
 
-🔍 Buscar por ID
+📄 Buscar Todos os Usuários
 
-GET /users/{id}
+Retorna uma lista paginada de todos os usuários.
+
+    Método: GET
+
+    URL: /users?page=0&pageSize=10
+
+    Parâmetros de Query:
+
+        page: Número da página (default: 0)
+
+        pageSize: Quantidade de itens por página (default: 10)
+
+    Exemplo de Resposta (200 OK):
+    code JSON
+        
+    [
+      {
+        "id": 1,
+        "username": "vinicius"
+      },
+      {
+        "id": 2,
+        "username": "maria"
+      }
+    ]
+
+
+🔍 Buscar Usuário por ID
+
+Retorna um usuário específico pelo seu ID.
+
+    Método: GET
+
+    URL: /users/{id}
+
+    Exemplo de Resposta (200 OK):
+    code JSON
+
+    {
+      "id": 1,
+      "username": "vinicius"
+    }
 
 ✏️ Atualizar Usuário
 
-PUT /users/{id}
-Body: {
+Atualiza as informações de um usuário existente.
+
+    Método: PUT
+
+    URL: /users/{id}
+
+    Corpo da Requisição (Body):
+    code JSON
+    
+{
   "username": "novoNome"
 }
 
+  
+
+Exemplo de Resposta (200 OK):
+code JSON
+
+    {
+      "id": 1,
+      "username": "novoNome"
+    }
+
 ❌ Deletar Usuário
 
-DELETE /users/{id}
+Deleta um usuário específico pelo seu ID.
 
+    Método: DELETE
+
+    URL: /users/{id}
+
+    Exemplo de Resposta (204 No Content): (Resposta vazia, indica sucesso na exclusão)
 
 ⚠️ Tratamento de Erros
 
-Se um usuário não for encontrado, é lançada a exceção UserNotFoundException,
-mapeada pelo UserNotFoundExceptionMapper, retornando:
+A API possui um tratamento de erros customizado para fornecer respostas claras em caso de problemas.
+
+Por exemplo, se um usuário não for encontrado para uma operação (GET, PUT, DELETE), a exceção UserNotFoundException é lançada e mapeada pelo UserNotFoundExceptionMapper, retornando:
 
     Status: 404 Not Found
 
-    Body:
+    Corpo da Resposta:
+    code JSON
+        
+    {
+      "error": "User not found"
+    }
+ 
 
-{
-  "error": "User not found"
-}
+▶️ Como Rodar o Projeto
 
-▶️ Como rodar o projeto
-Dev Mode (Live Coding)
+Siga os passos abaixo para configurar e executar o projeto em sua máquina.
+Pré-requisitos
 
-Execute no terminal:
+Certifique-se de ter os seguintes softwares instalados:
+
+    Java Development Kit (JDK) 11 ou superior
+
+    Apache Maven (gerenciador de dependências)
+
+    Servidor MySQL em execução
+
+Configuração do Banco de Dados MySQL
+
+    Crie um banco de dados MySQL para o projeto (ex: seu_banco).
+
+    No arquivo src/main/resources/application.properties, configure as credenciais e a URL do seu banco de dados:
+    code Properties
+        
+    quarkus.datasource.db-kind=mysql
+    quarkus.datasource.username=seu_usuario
+    quarkus.datasource.password=sua_senha
+    quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/seu_banco
+    quarkus.hibernate-orm.database.generation=update
+
+      
+
+        quarkus.hibernate-orm.database.generation=update: Esta propriedade fará com que o Hibernate atualize o schema do banco de dados automaticamente com base nas suas entidades. Cuidado ao usar em produção.
+
+Modo Desenvolvimento (Dev Mode - Live Coding)
+
+Para executar a aplicação em modo de desenvolvimento com "live coding":
+
+    Navegue até o diretório raiz do projeto no terminal.
+
+    Execute o comando:
+    code Bash
 
 quarkus dev
 
-A aplicação sobe em http://localhost:8080.
-No modo dev você também tem acesso ao Dev UI em http://localhost:8080/q/dev/.
-Configuração do MySQL
-
-No arquivo application.properties, configure:
-
-quarkus.datasource.db-kind=mysql
-quarkus.datasource.username=seu_usuario
-quarkus.datasource.password=sua_senha
-quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/seu_banco
-quarkus.hibernate-orm.database.generation=update
-
-
-
-🔍 Diferenças para Spring Boot
-
-    Quarkus inicia mais rápido e é otimizado para aplicações nativas (GraalVM).
-
-    Utiliza JAX-RS no lugar do Spring MVC.
-
-    Panache simplifica muito os repositórios (menos código boilerplate).
-
-    Configuração mais enxuta e focada em cloud-native.
+  
