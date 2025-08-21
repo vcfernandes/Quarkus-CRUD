@@ -29,20 +29,6 @@ Jakarta Persistence (JPA)
 
 Jakarta Transactions
 
-📂 Estrutura do Projeto
-
-src/main/java/org/project
- ├── Controller
- │    └── UserController.java         # Endpoints REST
- ├── Entity
- │    └── UserEntity.java             # Entidade User
- ├── Repository
- │    └── UserRepository.java         # Repositório Panache
- ├── Service
- │    └── UserService.java            # Regras de negócio
- └── Exception
-      ├── UserNotFoundException.java
-      └── UserNotFoundExceptionMapper.java
 
 📌 Endpoints
 
