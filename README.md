@@ -182,9 +182,6 @@ Configuração do Banco de Dados MySQL
     quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/seu_banco
     quarkus.hibernate-orm.database.generation=update
 
-      
-
-        quarkus.hibernate-orm.database.generation=update: Esta propriedade fará com que o Hibernate atualize o schema do banco de dados automaticamente com base nas suas entidades. Cuidado ao usar em produção.
 
 Modo Desenvolvimento (Dev Mode - Live Coding)
 
