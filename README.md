@@ -43,10 +43,9 @@ Cria um novo usuário no sistema.
     Método: POST
 
     URL: /users
-
-    Corpo da Requisição (Body):
-    code JSON
     
+    Corpo da Requisição (Body):
+    code JSON    
 {
   "username": "vinicius"
 }
