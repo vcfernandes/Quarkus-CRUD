@@ -163,29 +163,24 @@ Pré-requisitos
 
 Certifique-se de ter os seguintes softwares instalados:
 
-    Java Development Kit (JDK) 11 ou superior
+    Java Development Kit (JDK) 21 
 
     Apache Maven (gerenciador de dependências)
 
-    Servidor MySQL em execução
-
-Configuração do Banco de Dados MySQL
-
-    Crie um banco de dados MySQL para o projeto (ex: seu_banco).
-
-    No arquivo src/main/resources/application.properties, configure as credenciais e a URL do seu banco de dados:
-    code Properties
-        
-    quarkus.datasource.db-kind=mysql
-    quarkus.datasource.username=seu_usuario
-    quarkus.datasource.password=sua_senha
-    quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/seu_banco
-    quarkus.hibernate-orm.database.generation=update
+    Docker Hub
 
 
-Modo Desenvolvimento (Dev Mode - Live Coding)
+Instalar o Quarkus
 
-Para executar a aplicação em modo de desenvolvimento com "live coding":
+Execute os comandos:
+
+iex "& { $(iwr https://ps.jbang.dev) } trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
+iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
+
+choco install quarkus
+
+
+Para executar a aplicação:
 
     Navegue até o diretório raiz do projeto no terminal.
 
