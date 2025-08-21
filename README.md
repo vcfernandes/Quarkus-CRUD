@@ -158,6 +158,10 @@ Por exemplo, se um usuário não for encontrado para uma operação (GET, PUT, D
 
 ▶️ Como Rodar o Projeto
 
+Instalar o Quarkus
+
+https://pt.quarkus.io/get-started/
+
 Siga os passos abaixo para configurar e executar o projeto em sua máquina.
 Pré-requisitos
 
@@ -168,17 +172,6 @@ Certifique-se de ter os seguintes softwares instalados:
     Apache Maven (gerenciador de dependências)
 
     Docker Hub
-
-
-Instalar o Quarkus
-
-Execute os comandos:
-
-iex "& { $(iwr https://ps.jbang.dev) } trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
-
-iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
-
-choco install quarkus
 
 
 Para executar a aplicação:
