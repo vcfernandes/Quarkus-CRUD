@@ -1,78 +1,117 @@
-# appquarkus
+Quarkus CRUD 
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Este projeto foi desenvolvido com Quarkus para aprendizado e comparação com Spring Boot.
+A aplicação implementa um CRUD de usuários utilizando:
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Quarkus REST (JAX-RS)
 
-## Running the application in dev mode
+Hibernate ORM with Panache
 
-You can run your application in dev mode that enables live coding using:
+Jackson para serialização JSON
 
-```shell script
-./mvnw quarkus:dev
-```
+MySQL como banco de dados
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+Tratamento de exceções customizadas
 
-## Packaging and running the application
+🚀 Tecnologias utilizadas
 
-The application can be packaged using:
+Quarkus
 
-```shell script
-./mvnw package
-```
+REST (JAX-RS)
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Hibernate ORM with Panache
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+RESTEasy Jackson
 
-If you want to build an _über-jar_, execute the following command:
+JDBC Driver MySQL
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+Jakarta Persistence (JPA)
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+Jakarta Transactions
 
-## Creating a native executable
+📂 Estrutura do Projeto
 
-You can create a native executable using:
+src/main/java/org/project
+ ├── Controller
+ │    └── UserController.java         # Endpoints REST
+ ├── Entity
+ │    └── UserEntity.java             # Entidade User
+ ├── Repository
+ │    └── UserRepository.java         # Repositório Panache
+ ├── Service
+ │    └── UserService.java            # Regras de negócio
+ └── Exception
+      ├── UserNotFoundException.java
+      └── UserNotFoundExceptionMapper.java
 
-```shell script
-./mvnw package -Dnative
-```
+📌 Endpoints
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+➕ Criar Usuário
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+POST /users
+Body: {
+  "username": "vinicius"
+}
 
-You can then execute your native executable with: `./target/appquarkus-1.0.0-SNAPSHOT-runner`
+📄 Buscar Todos
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+GET /users?page=0&pageSize=10
 
-## Related Guides
+🔍 Buscar por ID
 
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- JDBC Driver - MySQL ([guide](https://quarkus.io/guides/datasource)): Connect to the MySQL database via JDBC
+GET /users/{id}
 
-## Provided Code
+✏️ Atualizar Usuário
 
-### Hibernate ORM
+PUT /users/{id}
+Body: {
+  "username": "novoNome"
+}
 
-Create your first JPA entity
+❌ Deletar Usuário
 
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
+DELETE /users/{id}
 
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
+⚠️ Tratamento de Erros
+
+Se um usuário não for encontrado, é lançada a exceção UserNotFoundException,
+mapeada pelo UserNotFoundExceptionMapper, retornando:
+
+    Status: 404 Not Found
+
+    Body:
+
+{
+  "error": "User not found"
+}
+
+▶️ Como rodar o projeto
+Dev Mode (Live Coding)
+
+Execute no terminal:
+
+quarkus dev
+
+A aplicação sobe em http://localhost:8080.
+No modo dev você também tem acesso ao Dev UI em http://localhost:8080/q/dev/.
+Configuração do MySQL
+
+No arquivo application.properties, configure:
+
+quarkus.datasource.db-kind=mysql
+quarkus.datasource.username=seu_usuario
+quarkus.datasource.password=sua_senha
+quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/seu_banco
+quarkus.hibernate-orm.database.generation=update
 
 
-### REST
 
-Easily start your REST Web Services
+🔍 Diferenças para Spring Boot
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+    Quarkus inicia mais rápido e é otimizado para aplicações nativas (GraalVM).
+
+    Utiliza JAX-RS no lugar do Spring MVC.
+
+    Panache simplifica muito os repositórios (menos código boilerplate).
+
+    Configuração mais enxuta e focada em cloud-native.
