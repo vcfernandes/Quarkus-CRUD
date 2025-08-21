@@ -175,6 +175,7 @@ Instalar o Quarkus
 Execute os comandos:
 
 iex "& { $(iwr https://ps.jbang.dev) } trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
+
 iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
 
 choco install quarkus
