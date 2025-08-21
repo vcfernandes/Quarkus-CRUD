@@ -4,31 +4,20 @@ Este projeto foi desenvolvido com Quarkus para aprendizado e comparação com Sp
 A aplicação implementa um CRUD de usuários utilizando:
 
 Quarkus REST (JAX-RS)
-
 Hibernate ORM with Panache
-
 Jackson para serialização JSON
-
 MySQL como banco de dados
-
 Tratamento de exceções customizadas
 
 🚀 Tecnologias utilizadas
 
 Quarkus
-
 REST (JAX-RS)
-
 Hibernate ORM with Panache
-
 RESTEasy Jackson
-
 JDBC Driver MySQL
-
 Jakarta Persistence (JPA)
-
 Jakarta Transactions
-
 
 📌 Endpoints
 
@@ -57,6 +46,7 @@ Body: {
 ❌ Deletar Usuário
 
 DELETE /users/{id}
+
 
 ⚠️ Tratamento de Erros
 
